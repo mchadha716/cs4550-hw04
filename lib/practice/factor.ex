@@ -1,25 +1,25 @@
 defmodule Practice.Factor do
-  def parse_int(text) do
-    {num, _} = Integer.parse(text)
-    num
-  end
 
   def factor(x) do
-    num = parse_int(x)
     factors = [1]
-    checkFactor = 2
-    factor_helper(num, factors, checkFactor)
+    f = 2
+    n = String.to_integer(x)
+    finalFactors = factorHelp(n, f, factors)
+    List.to_string(finalFactors)
   end
 
-  def factor_helper(num, factors, checkFactor) do
-    if checkFactor <= num do
-      if rem(num, checkFactor) == 0 do
-        newFactors = factors ++ [checkFactor]
-        factor_helper(div(num, checkFactor), newFactors, checkFactor)
-      else
-        factor_helper(num, factors, checkFactor + 1)
+  def factorHelp(n, f, factors) do
+    if f <= n do
+      if rem(round(n), f) == 0 do
+        factors ++ [f]
+        nNew = n / f
+        factorHelp(nNew, f, factors)
+      else 
+        fNew = f + 1
+        factorHelp(n, fNew, factors)
       end
+    else
+      factors
     end
-    factors
   end
 end
