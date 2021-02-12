@@ -7,26 +7,27 @@ defmodule Practice.Calc do
   def calc(expr) do
     # This should handle +,-,*,/ with order of operations,
     # but doesn't need to handle parens.
-    expr |> String.split(" ")
-    tokens = tagTokens(expr)
+    arr = String.split(expr)
+    tokens = tagTokens(arr)
     postfix = shuntingAlg(tokens, [], [])
     finalAnswer = calculate(postfix, [])
+
+    finalAnswer
   end
 
   def tagTokens(list) do
-    list
-    |> Enum.map(fn x ->
+    Enum.map(list, fn x ->
     case x do
       "+" -> {:op, "+"}
       "-" -> {:op, "-"}
       "*" -> {:op, "*"}
       "/" -> {:op, "/"}
       _ -> {:num, parse_float(x)}
-    end
-    end)
+    end end)
   end
 
   def shuntingAlg(tokens, operandStack, operatorStack) do
+    shouldWeRecurse = true
     if length(tokens) > 0 do
       first = hd tokens
       case first do
@@ -44,18 +45,33 @@ defmodule Practice.Calc do
                    operatorStack ++ [x]
               -1 -> operandStack ++ [firstOp] 
                     operatorStack = tl operatorStack
+                    shouldWeRecurse = false
                     shuntingAlg(tokens, operandStack, operatorStack)
               _ -> nil
              end
           end
-          _ -> nil
+         _ -> nil
       end
-      rest = tl tokens
-      shuntingAlg(rest, operandStack, operatorStack)
+      if shouldWeRecurse do
+        rest = tl tokens
+        shuntingAlg(rest, operandStack, operatorStack)
+      else 
+        nil
+      end
     else 
       appended = operandStack ++ operatorStack
       appended
     end
+  end
+
+  def checkRank(op) do
+    rank = 0
+    if op == "+" or op == "-" do
+      rank = 1
+    else 
+      rank = 2
+    end
+    rank
   end
 
   def calculate(postfix, stack) do
@@ -88,5 +104,4 @@ defmodule Practice.Calc do
       finalAnswer
     end
   end
-
 end
