@@ -1,16 +1,21 @@
 defmodule Practice.Factor do
 
+  def parseFloat(text) do
+    {num, _} = Float.parse(text)
+    num
+  end
+
   def factor(x) do
     factors = [1]
     f = 2
-    n = String.to_integer(x)
-    finalFactors = factorHelp(n, f, factors)
-    List.to_string(finalFactors)
+    n = parseFloat(x)
+    # n = String.to_integer(x)
+    factorHelp(n, f, factors)
   end
 
   def factorHelp(n, f, factors) do
     if f <= n do
-      if rem(round(n), f) == 0 do
+      if rem(trunc(n), f) == 0 do
         factors ++ [f]
         nNew = n / f
         factorHelp(nNew, f, factors)
@@ -20,6 +25,10 @@ defmodule Practice.Factor do
       end
     else
       factors
+      |> tl
+      |> Enum.map(fn n -> to_string(trunc(n)) end)
+      |> Enum.join(" ")
     end
+    factors
   end
 end
