@@ -1,0 +1,46 @@
+Please fill in answers to the questions below:
+
+
+1. What's your name?
+
+Mira Chadha
+
+2. What hostname did you deploy your app to?
+
+hw04.mirawebdev.xyz
+
+^ unfortunately this is not fully working.
+
+3. What's the URL of your git for this assignment?
+
+https://github.com/mchadha716/cs4550-hw04
+
+4. How much of the functionality did you complete?
+
+I coded every part of the assignment
+palindrome works successfully
+factor and calc have minor errors that I was unable to solve
+
+5. Did you successfully deploy? If not, what's broken?
+
+I was unable to successfully deploy - I tried my best for over 3 hours but was unsuccessful.
+
+6. How comfortable do you feel with Elixir now?
+
+Not very comfortable - if I had more resources to help me I may have been more successful
+
+7. Which parts of this assignment did you have trouble with, if any?
+
+I had trouble with debugging factor ("returning" and printing the answer on the website was not working)
+I had trouble with debugging calc
+I had trouble deploying
+
+And here's a list of tasks for grading comments. Just leave this here:
+ - Task 1
+ - Task 2
+ - Task 3
+ - Task 4
+ - Task 5
+ - Task 6
+ - Task 7
+ - Task 8
